@@ -1,6 +1,7 @@
 ﻿{
   "$schema": "https://raw.githubusercontent.com/nike4613/ModSaber-MetadataFileSchema/master/Schema.json",
   "author": "Shadnix",
+  "license": "MIT",
   "description": "Disables automatic SFX volume adjustments.",
   "gameVersion": "1.6.0",
   "id": "AdaptiveSFXRemover",
@@ -10,5 +11,8 @@
     "BeatSaberMarkupLanguage": "^1.1.0",
     "BS Utils": "^1.4.0"
   },
-  "features": []
+  "features": [],
+  "links": {
+    "project-home": "https://github.com/Shadnix-was-taken/BeatSaber-AdaptiveSFXRemover"
+  }
 }

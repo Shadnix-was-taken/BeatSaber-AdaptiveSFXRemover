@@ -1,12 +1,8 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using BeatSaberMarkupLanguage.Settings;
 using Harmony;
 using IPA;
-using IPA.Config;
-using IPA.Utilities;
 using UnityEngine.SceneManagement;
-using UnityEngine;
 using IPALogger = IPA.Logging.Logger;
 
 namespace AdaptiveSFXRemover
