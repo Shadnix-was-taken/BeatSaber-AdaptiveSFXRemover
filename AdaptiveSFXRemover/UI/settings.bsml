@@ -1,0 +1,3 @@
+﻿<settings-container>
+  <bool-setting text='Adaptive SFX Volume' value='boolEnable'></bool-setting>
+</settings-container>
