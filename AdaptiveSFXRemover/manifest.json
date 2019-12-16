@@ -6,7 +6,7 @@
   "gameVersion": "1.6.0",
   "id": "AdaptiveSFXRemover",
   "name": "AdaptiveSFXRemover",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "dependsOn": {
     "BeatSaberMarkupLanguage": "^1.1.0",
     "BS Utils": "^1.4.0"

@@ -14,6 +14,8 @@ namespace AdaptiveSFXRemover
         internal static bool harmonyPatchesLoaded = false;
         internal static HarmonyInstance harmonyInstance = HarmonyInstance.Create("com.shadnix.BeatSaber.AdaptiveSFXRemover");
 
+        internal static bool gameCoreJustLoaded = false;
+
         public void Init(IPALogger logger)
         {
             Logger.log = logger;
@@ -78,6 +80,11 @@ namespace AdaptiveSFXRemover
                     Logger.log.Info("Unloading Harmony patches...");
                     UnloadHarmonyPatch();
                 }
+            }
+
+            if (scene.name == "GameCore")
+            {
+                gameCoreJustLoaded = true;
             }
         }
 
