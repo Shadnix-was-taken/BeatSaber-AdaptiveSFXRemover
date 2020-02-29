@@ -1,50 +1,38 @@
 ﻿using System.Reflection;
 using BeatSaberMarkupLanguage.Settings;
-using Harmony;
+using HarmonyLib;
 using IPA;
 using UnityEngine.SceneManagement;
 using IPALogger = IPA.Logging.Logger;
 
 namespace AdaptiveSFXRemover
 {
-    public class Plugin : IBeatSaberPlugin
+    [Plugin(RuntimeOptions.SingleStartInit)]
+    public class Plugin
     {
         internal static string Name => "AdaptiveSFXRemover";
 
         internal static bool harmonyPatchesLoaded = false;
-        internal static HarmonyInstance harmonyInstance = HarmonyInstance.Create("com.shadnix.BeatSaber.AdaptiveSFXRemover");
+        internal static Harmony harmonyInstance = new Harmony("com.shadnix.BeatSaber.AdaptiveSFXRemover");
 
         internal static bool gameCoreJustLoaded = false;
 
+        [Init]
         public void Init(IPALogger logger)
         {
             Logger.log = logger;
         }
 
-        public void OnApplicationStart()
+        [OnStart]
+        public void OnStart()
         {
-
+            AddEvents();
         }
 
-        public void OnApplicationQuit()
+        [OnExit]
+        public void OnExit()
         {
-
-        }
-
-        /// <summary>
-        /// Runs at a fixed intervalue, generally used for physics calculations. 
-        /// </summary>
-        public void OnFixedUpdate()
-        {
-
-        }
-
-        /// <summary>
-        /// This is called every frame.
-        /// </summary>
-        public void OnUpdate()
-        {
-
+            RemoveEvents();
         }
 
         /// <summary>
@@ -54,7 +42,7 @@ namespace AdaptiveSFXRemover
         /// <param name="nextScene">The scene you are transitioning to.</param>
         public void OnActiveSceneChanged(Scene prevScene, Scene nextScene)
         {
-            if (nextScene.name == "MenuViewControllers")
+            if (nextScene.name == "MenuViewControllers" && prevScene.name == "EmptyTransition")
             {
                 BSMLSettings.instance.AddSettingsMenu("Adaptive SFX", "AdaptiveSFXRemover.UI.settings.bsml", UI.Settings.instance);
             }
@@ -88,9 +76,17 @@ namespace AdaptiveSFXRemover
             }
         }
 
-        public void OnSceneUnloaded(Scene scene)
+        private void AddEvents()
         {
+            RemoveEvents();
+            SceneManager.activeSceneChanged += OnActiveSceneChanged;
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
 
+        private void RemoveEvents()
+        {
+            SceneManager.activeSceneChanged -= OnActiveSceneChanged;
+            SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
         internal void LoadHarmonyPatch()
@@ -112,5 +108,6 @@ namespace AdaptiveSFXRemover
             }
             harmonyPatchesLoaded = false;
         }
+
     }
 }
