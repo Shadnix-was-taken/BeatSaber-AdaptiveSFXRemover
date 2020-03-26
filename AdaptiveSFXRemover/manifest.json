@@ -8,8 +8,8 @@
   "name": "AdaptiveSFXRemover",
   "version": "1.2.0",
   "dependsOn": {
-    "BeatSaberMarkupLanguage": "^1.1.0",
-    "BS Utils": "^1.4.0"
+    "BeatSaberMarkupLanguage": "^1.2.0",
+    "BS Utils": "^1.4.4"
   },
   "features": [],
   "links": {
